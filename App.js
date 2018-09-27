@@ -1,6 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation'
-import {ListDeck, NewDeck} from './components'
+import ListDeck from './components/ListDeck';
+import NewDeck from './components/NewDeck';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { cinza, laranja } from './utils/colors';
 
