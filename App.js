@@ -1,15 +1,18 @@
 import React from 'react';
-import {createBottomTabNavigator} from 'react-navigation'
+import {createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import ListDeck from './components/ListDeck';
 import NewDeck from './components/NewDeck';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View } from 'react-native';
 import { cinza, laranja } from './utils/colors';
+import ViewDeck from "./components/ViewDeck";
+import StatusBarDeck from "./components/StatusBarDeck";
 
-const MainTabs= createBottomTabNavigator({
+const MainTabs = createBottomTabNavigator({
         List: {
             screen: ListDeck,
             navigationOptions: {
-                tabBarLabel: "Baralhos",
+                tabBarLabel: "Decks",
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Ionicons name="ios-albums-outline" size={25} color={tintColor}/>;
                 }
@@ -19,7 +22,7 @@ const MainTabs= createBottomTabNavigator({
         New: {
             screen: NewDeck,
             navigationOptions: {
-                tabBarLabel: "Novo Baralho",
+                tabBarLabel: "New Deck",
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Ionicons name="ios-add-outline" size={25} color={tintColor}/>;
                 }
@@ -28,14 +31,32 @@ const MainTabs= createBottomTabNavigator({
     },
     {
         tabBarOptions: {
-            activeTintColor: laranja,
-            inactiveTintColor: cinza
+            activeTintColor: 'red',
+            inactiveTintColor: '#aaa'
         }
     }
 );
 
+const NavigationStack = createStackNavigator({
+    Home: {
+        screen: MainTabs,
+        navigationOptions: {
+            header: null
+        }
+    },
+    ViewDeck: {
+        screen: ViewDeck,
+        navigationOptions: ({ navigation }) => ({
+            title: `Deck ${navigation.state.params.deck.title}`
+        })
+    }
+});
+
 export default class App extends React.Component {
     render() {
-        return <MainTabs/>
+        return (<View style={{ flex: 1 }}>
+            <StatusBarDeck backgroundColor="red" barStyle="light-content" />
+            <NavigationStack />
+        </View>)
     }
 }

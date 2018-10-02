@@ -1,0 +1,1 @@
+export const FLASHCARDS_STORAGE_KEY = 'FlashCards:decks';export const NOTIFICATION_KEY = 'FlashCards:notifications';
