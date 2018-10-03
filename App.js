@@ -4,15 +4,15 @@ import ListDeck from './components/ListDeck';
 import NewDeck from './components/NewDeck';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { View } from 'react-native';
-import { cinza, laranja } from './utils/colors';
 import ViewDeck from "./components/ViewDeck";
 import StatusBarDeck from "./components/StatusBarDeck";
+import NewCard from "./components/NewCard";
 
 const MainTabs = createBottomTabNavigator({
         List: {
             screen: ListDeck,
             navigationOptions: {
-                tabBarLabel: "Decks",
+                tabBarLabel: "Lista de Baralhos",
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Ionicons name="ios-albums-outline" size={25} color={tintColor}/>;
                 }
@@ -22,7 +22,7 @@ const MainTabs = createBottomTabNavigator({
         New: {
             screen: NewDeck,
             navigationOptions: {
-                tabBarLabel: "New Deck",
+                tabBarLabel: "Novo Baralho",
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Ionicons name="ios-add-outline" size={25} color={tintColor}/>;
                 }
@@ -47,7 +47,13 @@ const NavigationStack = createStackNavigator({
     ViewDeck: {
         screen: ViewDeck,
         navigationOptions: ({ navigation }) => ({
-            title: `Deck ${navigation.state.params.deck.title}`
+            title: `Baralho - ${navigation.state.params.deck.title}`
+        })
+    },
+    NewCard: {
+        screen: NewCard,
+        navigationOptions: ({ navigation }) => ({
+            title: `${navigation.state.params.title} - Adicionar Carta`
         })
     }
 });
