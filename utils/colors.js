@@ -1,1 +1,0 @@
-export const laranja = 'tomato';export const cinza = 'gray';

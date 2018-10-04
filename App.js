@@ -7,6 +7,7 @@ import { View } from 'react-native';
 import ViewDeck from "./components/ViewDeck";
 import StatusBarDeck from "./components/StatusBarDeck";
 import NewCard from "./components/NewCard";
+import StartQuiz from "./components/StartQuiz";
 
 const MainTabs = createBottomTabNavigator({
         List: {
@@ -22,7 +23,7 @@ const MainTabs = createBottomTabNavigator({
         New: {
             screen: NewDeck,
             navigationOptions: {
-                tabBarLabel: "Novo Baralho",
+                tabBarLabel: "Criar Baralho",
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Ionicons name="ios-add-outline" size={25} color={tintColor}/>;
                 }
@@ -53,8 +54,14 @@ const NavigationStack = createStackNavigator({
     NewCard: {
         screen: NewCard,
         navigationOptions: ({ navigation }) => ({
-            title: `${navigation.state.params.title} - Adicionar Carta`
+            title: `${navigation.state.params.title} - Adicionar Pergunta`
         })
+    },
+    Quiz: {
+        screen: StartQuiz,
+        navigationOptions: {
+            title: 'Quiz'
+        }
     }
 });
 
